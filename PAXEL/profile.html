@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .profile-card {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        .avatar img {
+            width: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+        .headings p {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #434955;
+        }
+        .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            border-bottom: 1px dotted #434955;
+            padding: 5px 0;
+        }
+        .contact-info svg {
+            width: 15px;
+            height: 15px;
+            fill: #434955;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-card">
+    <div class="avatar">
+        <img src="avatar.png" alt="Profile Picture">
+    </div>
+    <div class="headings">
+        <p id="user-fullname">User Name</p>
+    </div>
+    <ul class="contact-info">
+        <li>
+            <svg viewBox="0 0 24 24">
+                <path d="M0 0h24v24H0V0z" fill="none"></path>
+                <path d="M19.23 15.26l-2.54-.29c-.61-.07-1.21.14-1.64.57l-1.84 1.84c-2.83-1.44-5.15-3.75-6.59-6.59l1.85-1.85c.43-.43.64-1.03.57-1.64l-.29-2.52c-.12-1.01-.97-1.77-1.99-1.77H5.03c-1.13 0-2.07.94-2 2.07.53 8.54 7.36 15.36 15.89 15.89 1.13.07 2.07-.87 2.07-2v-1.73c.01-1.01-.75-1.86-1.76-1.98z"></path>
+            </svg>
+            <p id="user-phone">+123-456-7890</p>
+        </li>
+        <li>
+            <svg viewBox="0 0 16 16">
+                <path d="M8 0C5.2 0 3 2.2 3 5s4 11 5 11 5-8.2 5-11-2.2-5-5-5zm0 8C6.3 8 5 6.7 5 5s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"></path>
+            </svg>
+            <p id="user-location">123 Main Street, City</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

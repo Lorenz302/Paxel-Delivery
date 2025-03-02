@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add to Cart - PAXEL</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+      .header {
+        background-color: #d9534f;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        z-index: 1000;
+      }
+      .back-button {
+        background: white;
+        color: #d9534f;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+        position: absolute;
+        right: 50px;
+        top: 15px;
+      }
+      .back-button:hover {
+        background: #f1f1f1;
+      }
+      .cart-container {
+        margin-top: 80px;
+        padding: 20px;
+        text-align: center;
+      }
+      .cart-item {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cart-item img {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+      }
+      .cart-item-details {
+        flex-grow: 1;
+        padding: 0 15px;
+        text-align: left;
+      }
+      .cart-item h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .cart-item p {
+        margin: 5px 0;
+        color: #666;
+      }
+      .cart-item button {
+        background: #d9534f;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .cart-item button:hover {
+        background: #c9302c;
+      }
+      .checkout-btn {
+        background: #5cb85c;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 18px;
+        display: block;
+        margin: 20px auto;
+      }
+      .checkout-btn:hover {
+        background: #4cae4c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>PAXEL - Cart</h1>
+      <button class="back-button">Back</button>
+    </div>
+  </body>
+</html>

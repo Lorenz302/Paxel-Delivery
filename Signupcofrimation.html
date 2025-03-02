@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paxel Sign Up</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-section img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            margin: 50px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .container input, .container select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            display: block;
+            box-sizing: border-box;
+        }
+        .container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .container button:hover {
+            background-color: #c9302c;
+        }
+        #map {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .file-upload {
+            text-align: left;
+            margin-top: 10px;
+            color: blue;
+        }
+        .agreement {
+            justify-content: center;
+        }
+        .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+.image-box {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;  /* Circle shape */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.image-box:hover img {
+    transform: scale(1.1);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <div class="logo-section" onclick="window.location.href='about.html';">
+                <img src="./PAXEL NEW LOGO.jpg" alt="Paxel Logo">
+            </div>
+            <div class="logo">Paxel</div>
+        </div>
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="report.html">Report</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div class="image-container">
+                <div class="image-box" onclick="document.getElementById('file-input').click();">
+                    <img id="preview" src="https://via.placeholder.com/150" alt="Click to upload">
+                </div>
+                <label class="upload-label" for="file-input">Click to upload a new image</label>
+                <input type="file" id="file-input" name="restaurant-image" accept="image/*" onchange="previewImage(event)">
+            </div>
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="tel" name="phone" id="phone" placeholder="Phone Number" required pattern="[0-9]{10,15}" title="Enter a valid phone number (10-15 digits)">
+            <input type="text" name="address" id="address" placeholder="Enter Address" required>
+            <div id="map"></div>
+            <input type="date" name="dob" required>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <div class="file-upload">
+                <label for="id-upload">Upload Valid ID (JPG, PNG, PDF):</label>
+                <input type="file" id="id-upload" name="id_upload" accept=".jpg, .jpeg, .png, .pdf" required>
+            </div>
+            <div class="agreement">
+                <input type="checkbox" id="agree" required>
+                <label for="agree"> I agree to the terms and conditions</label>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <script>
+        var map = L.map('map').setView([14.5995, 120.9842], 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        var marker = L.marker([14.5995, 120.9842], { draggable: true }).addTo(map);
+        function updateAddress(lat, lon) {
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('address').value = data.display_name || "Location not found";
+                })
+                .catch(err => console.error("Error fetching address:", err));
+        }
+        marker.on('dragend', function(event) {
+            var position = marker.getLatLng();
+            updateAddress(position.lat, position.lng);
+        });
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                var userLat = position.coords.latitude;
+                var userLng = position.coords.longitude;
+                marker.setLatLng([userLat, userLng]);
+                map.setView([userLat, userLng], 15);
+                updateAddress(userLat, userLng);
+            }, error => {
+                console.error("Geolocation error:", error);
+                alert("⚠️ Location access denied. Please enable GPS for accuracy.");
+            }, {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            });
+        } else {
+            alert("❌ Geolocation is not supported by your browser.");
+        }
+    </script>
+</body>
+</html>
