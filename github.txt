@@ -51,3 +51,31 @@ git commit -m "Updated files"
 git push origin main
 ```
 
+
+
+
+
+
+
+Steps to Remove the File or Folder Properly
+Check what’s inside your repository
+Run:
+
+git ls-files
+This will list all tracked files. Look for the exact name of the file/folder you want to remove.
+
+Run the correct removal command
+If you want to remove a file:
+
+
+git rm --cached filename.txt  # Replace with the actual file name
+If you want to remove a folder:
+
+
+git rm -r --cached foldername  # Replace with the actual folder name
+Commit and push the changes
+
+
+
+git commit -m "Removed unwanted file/folder"
+git push origin main
