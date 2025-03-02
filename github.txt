@@ -1,0 +1,53 @@
+**Step 1: Create a GitHub Repository**
+1. Go to [GitHub](https://github.com/) and sign in.
+2. Click the "+" icon at the top right and select "New repository."
+3. Enter a **Repository Name** (e.g., `food-paxel-delivery`).
+4. Choose **Public** or **Private**.
+5. **Do not** initialize with a README (since you'll upload existing files).
+6. Click "Create repository."
+7. Copy the repository **URL** (HTTPS or SSH).
+
+**Step 2: Initialize Git in VS Code**
+1. Open **VS Code** and navigate to your project folder.
+2. Open the **Terminal** (`Ctrl + ~`).
+3. Run the following command:
+   ```sh
+   git init  # Initialize Git in your project
+   ```
+
+**Step 3: Set Up Git User and Email**
+1. Configure your Git identity (only needed once per computer):
+   ```sh
+   git config --global user.email "your-email@example.com"  # Set your Git email
+   git config --global user.name "Your Name"  # Set your Git username
+   ```
+
+**Step 4: Connect to GitHub Repository**
+1. Add the remote repository (replace `<your-repo-url>` with your actual GitHub URL):
+   ```sh
+   git remote add origin <your-repo-url>
+   ```
+2. Verify the remote repository is added:
+   ```sh
+   git remote -v
+   ```
+
+**Step 5: Commit and Push Your Project**
+1. Add and commit your files:
+   ```sh
+   git add .  # Add all files to Git
+   git commit -m "Initial commit"  # Commit the files
+   ```
+2. Push your project to GitHub:
+   ```sh
+   git branch -M main  # Rename branch to main
+   git push -u origin main  # Push files to GitHub
+   ```
+
+Now your project is on GitHub and can be updated anytime with:
+```sh
+git add .
+git commit -m "Updated files"
+git push origin main
+```
+
