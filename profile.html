@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Card</title>
+    <title>User Profile</title>
     <style>
-        body {
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F7F7F7;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
-            background-color: #f0f0f0;
         }
         .profile-card {
-            width: 300px;
+            width: 90%;
+            max-width: 350px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
             padding: 20px;
-            transition: all 0.3s ease-in-out;
         }
         .avatar img {
             width: 100px;
@@ -44,15 +47,100 @@
             border-bottom: 1px dotted #434955;
             padding: 5px 0;
         }
-        .contact-info svg {
-            width: 15px;
-            height: 15px;
-            fill: #434955;
+        .icon-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
         }
+        .icon {
+            font-size: 30px;
+            cursor: pointer;
+            transition: all ease-in-out 0.1s;
+        }
+        .icon:hover {
+            transform: translateY(-3px);
+        }
+        .icon-label {
+            font-size: 14px;
+            color: #F7F7F7;
+            text-align: center;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #F7F7F7;
+            border-radius: 5px;
+            padding: 5px;
+            margin-left: 20px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 180px;
+        }
+        .search-bar svg {
+            color: #A8180D;
+            cursor: pointer;
+        }
+        .header-title-container {
+            display: flex;
+            align-items: center;
+            gap: 20px; 
+        }
+        .menu-icon {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+        .menu-drawer {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #A8180D;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            transition: left 0.2s ease-in-out;
+            padding: 20px;
+        }
+        .menu-drawer.open {
+            left: 0;
+        }
+        .footer {
+            background-color: #A8180D;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 1000;
+        }
+        .header {
+            background-color: #A8180D;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            z-index: 1000;
+        }
+        
     </style>
 </head>
 <body>
-
 <div class="profile-card">
     <div class="avatar">
         <img src="avatar.png" alt="Profile Picture">
@@ -61,20 +149,81 @@
         <p id="user-fullname">User Name</p>
     </div>
     <ul class="contact-info">
-        <li>
-            <svg viewBox="0 0 24 24">
-                <path d="M0 0h24v24H0V0z" fill="none"></path>
-                <path d="M19.23 15.26l-2.54-.29c-.61-.07-1.21.14-1.64.57l-1.84 1.84c-2.83-1.44-5.15-3.75-6.59-6.59l1.85-1.85c.43-.43.64-1.03.57-1.64l-.29-2.52c-.12-1.01-.97-1.77-1.99-1.77H5.03c-1.13 0-2.07.94-2 2.07.53 8.54 7.36 15.36 15.89 15.89 1.13.07 2.07-.87 2.07-2v-1.73c.01-1.01-.75-1.86-1.76-1.98z"></path>
-            </svg>
-            <p id="user-phone">+123-456-7890</p>
-        </li>
-        <li>
-            <svg viewBox="0 0 16 16">
-                <path d="M8 0C5.2 0 3 2.2 3 5s4 11 5 11 5-8.2 5-11-2.2-5-5-5zm0 8C6.3 8 5 6.7 5 5s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"></path>
-            </svg>
-            <p id="user-location">123 Main Street, City</p>
-        </li>
+        <li>Phone: <span id="user-phone">+123-456-7890</span></li>
+        <li>Location: <span id="user-location">123 Main Street, City</span></li>
     </ul>
+</div>
+</div>
+<div class="header">
+    <div class="header-title-container">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                <path d="M3 6h18M3 12h18M3 18h18"></path>
+            </svg>
+        </div>
+        <h1>Paxel</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+        </div>
+        <div class="icon-container">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                    <circle r="1" cy="21" cx="9"></circle>
+                    <circle r="1" cy="21" cx="20"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <div class="icon-label">Cart</div>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                    <path d="M3 9v10h18V9H3zm13 10a2 2 0 1 1 4 0M4 19a2 2 0 1 1 4 0M13 9V5h4l3 4v4"></path>
+                </svg>
+                <div class="icon-label">Delivery</div>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                    <path d="M15 17h5l-1-1V11a7 7 0 0 0-14 0v5l-1 1h5m0 0a3 3 0 0 0 6 0"></path>
+                </svg>
+                <div class="icon-label">Notification</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="menu-drawer" id="menuDrawer">
+    <h2>Menu</h2>
+    <p>Home</p>
+    <p>About</p> 
+</div>
+<script>
+    function toggleMenu() {
+        var drawer = document.getElementById("menuDrawer");
+        drawer.classList.toggle("open");
+    }
+</script>
+    </div>
+</div>
+<div class="footer">
+    <div class="icon-container" onclick="location.href='profile.html'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+            <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"></path>
+        </svg>
+        <div class="icon-label">Profile</div>
+    </div>
+    <div class="icon-container" onclick="location.href='orderlist.html'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+            <path d="M8 6h8M8 12h8M8 18h8M4 4h16v16H4z"></path>
+        </svg>
+        <div class="icon-label">Order</div>
+    </div>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+            <path d="M8 2v20M16 2l-2 5 2 5-2 5 2 5M5 2v10c0 2 1 3 3 3s3-1 3-3V2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+       <div class="icon-label">Food</div>
+    </div>
 </div>
 </body>
 </html>

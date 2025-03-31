@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grocery</title>
+    <title>Order</title>
     <style>
         body {
             margin: 0;
@@ -87,53 +87,6 @@
         .menu-drawer.open {
             left: 0;
         }
-        .order-section {
-            margin-top: 80px;
-            padding: 20px;
-            text-align: center;
-        }
-      .shop-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 80px 20px;
-        }
-        .shop-card {
-            background: #F7F7F7;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        .shop-card img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .shop-card h3 {
-            margin: 10px 0;
-        }
-        .shop-card p {
-            font-size: 14px;
-            color: black;
-        }
-        .shop-card .location {
-            font-weight: bold;
-            color: #333;
-        }
-        .shop-card button {
-            background: #A8180D;
-            color: white;
-            border: none;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .shop-card button:hover {
-            background: #C79900;
-        }
         .footer {
             background-color: #A8180D;
             color: white;
@@ -201,33 +154,6 @@
         }
     </script>
         </div>
-    </div>
-    <div class="shop-container">
-    <div class="shop-card" onclick="location.href='shop1.html'" style="cursor: pointer;">
-        <img src="./shop1.jpg" alt="Shop 1">
-        <h3>Shop 1</h3>
-        <p>Delicious meals and fast delivery. Try our best-selling dishes today!</p>
-        <p class="location">123 Main Street, City, 10001</p>
-        <button type="button" onclick="event.stopPropagation(); return false;">Order Now</button>
-        <button type="button" onclick="event.stopPropagation(); return false;">Add to Cart</button>
-    </div>
-
-    <div class="shop-card" onclick="location.href='shop2.html'" style="cursor: pointer;">
-        <img src="./shop2.jpg" alt="Shop 2">
-        <h3>Shop 2</h3>
-        <p>Fresh ingredients and amazing flavors. Order your favorite dishes now!</p>
-        <p class="location">456 Elm Street, City, 10002</p>
-        <button type="button" onclick="event.stopPropagation(); return false;">Order Now</button>
-        <button type="button" onclick="event.stopPropagation(); return false;">Add to Cart</button>
-    </div>
-
-    <div class="shop-card" onclick="location.href='shop3.html'" style="cursor: pointer;">
-        <img src="./shop3.jpg" alt="Shop 3">
-        <h3>Shop 3</h3>
-        <p>Authentic dishes with great taste. Order from us today!</p>
-        <p class="location">789 Oak Street, City, 10003</p>
-        <button type="button" onclick="event.stopPropagation(); return false;">Order Now</button>
-        <button type="button" onclick="event.stopPropagation(); return false;">Add to Cart</button>
     </div>
     <div class="footer">
         <div class="icon-container" onclick="location.href='profile.html'">

@@ -1,107 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add to Cart - PAXEL</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
     <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-      }
-      .header {
-        background-color: #d9534f;
-        color: white;
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 60px;
-        z-index: 1000;
-      }
-      .back-button {
-        background: white;
-        color: #d9534f;
-        border: none;
-        padding: 8px 12px;
-        cursor: pointer;
-        border-radius: 5px;
-        position: absolute;
-        right: 50px;
-        top: 15px;
-      }
-      .back-button:hover {
-        background: #f1f1f1;
-      }
-      .cart-container {
-        margin-top: 80px;
-        padding: 20px;
-        text-align: center;
-      }
-      .cart-item {
-        background: white;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .cart-item img {
-        width: 80px;
-        height: 80px;
-        border-radius: 8px;
-      }
-      .cart-item-details {
-        flex-grow: 1;
-        padding: 0 15px;
-        text-align: left;
-      }
-      .cart-item h3 {
-        margin: 0;
-        font-size: 18px;
-      }
-      .cart-item p {
-        margin: 5px 0;
-        color: #666;
-      }
-      .cart-item button {
-        background: #d9534f;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-      .cart-item button:hover {
-        background: #c9302c;
-      }
-      .checkout-btn {
-        background: #5cb85c;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 18px;
-        display: block;
-        margin: 20px auto;
-      }
-      .checkout-btn:hover {
-        background: #4cae4c;
-      }
+       body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+        .header {
+            background-color: #A8180D;
+            color:#F7F7F7;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            z-index: 1000;
+        }
+        .icon-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-left: 20px;
+        }
+        .icon {
+            font-size: 30px;
+            cursor: pointer;
+            transition: all ease-in-out 0.1s;
+        }
+        .icon:hover {
+            transform: translateY(-3px);
+        }
+        .icon-label {
+            font-size: 14px;
+            color: #F7F7F7;
+            text-align: center;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #F7F7F7;
+            border-radius: 5px;
+            padding: 5px;
+            margin-left: 20px;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 180px;
+        }
+        .search-bar svg {
+            color: #A8180D;
+            cursor: pointer;
+        }
+        .header-title-container {
+            display: flex;
+            align-items: center;
+            gap: 20px; 
+        }
+        .menu-icon {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+        .menu-drawer {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #A8180D;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            transition: left 0.2s ease-in-out;
+            padding: 20px;
+        }
+        .menu-drawer.open {
+            left: 0;
+        }
+        .footer {
+            background-color: #A8180D;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 1000;
+        }
+
+        .food-container {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            width: 200px;
+        }
+        .cart {
+    width: 300px;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+        .cart h2 {
+            margin-bottom: 10px;
+        }
+        .rating {
+            color: gold;
+            font-size: 16px;
+        }
     </style>
-  </head>
-  <body>
-    <div class="header">
-      <h1>PAXEL - Cart</h1>
-      <button class="back-button">Back</button>
+   <script>
+    let cart = [];
+
+    async function fetchFoodItems() {
+        try {
+            const response = await fetch('http://localhost:5000/food-items'); // Example API endpoint
+            const foodItems = await response.json();
+            const container = document.querySelector(".food-container");
+            container.innerHTML = "";
+            
+            foodItems.forEach(item => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" width="100" height="100">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <p><strong>$${item.price.toFixed(2)}</strong></p>
+                    <div class="rating">⭐️⭐️⭐️⭐️⭐️</div>
+                    <button onclick="addToCart(${item.id}, '${item.name}', ${item.price})">Add to Cart</button>
+                `;
+                container.appendChild(card);
+            });
+        } catch (error) {
+            console.error('Error fetching food items:', error);
+        }
+    }
+
+    function addToCart(id, name, price) {
+        cart.push({ id, name, price });
+        updateCart();
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartContainer = document.querySelector(".cart-items");
+        cartContainer.innerHTML = "";
+        
+        cart.forEach((item, index) => {
+            const cartItem = document.createElement("div");
+            cartItem.innerHTML = `
+                <input type="checkbox">
+                ${item.name} - $${item.price.toFixed(2)}
+                <button onclick="removeFromCart(${index})">❌</button>
+            `;
+            cartContainer.appendChild(cartItem);
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchFoodItems);
+</script>
+</head>
+<body>
+    <body>
+        <div class="food-container">
+            <!-- Food items will be dynamically loaded here -->
+        </div>
+        <div class="cart">
+            <h2>Cart</h2>
+            <div class="cart-items"></div>
+            <button onclick="orderNow()">Order</button>
+        </div>
+        <div class="header">
+            <div class="header-title-container">
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                        <path d="M3 6h18M3 12h18M3 18h18"></path>
+                    </svg>
+                </div>
+                <h1>Paxel</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <div class="icon-container">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                            <circle r="1" cy="21" cx="9"></circle>
+                            <circle r="1" cy="21" cx="20"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <div class="icon-label">Cart</div>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                            <path d="M3 9v10h18V9H3zm13 10a2 2 0 1 1 4 0M4 19a2 2 0 1 1 4 0M13 9V5h4l3 4v4"></path>
+                        </svg>
+                        <div class="icon-label">Delivery</div>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                            <path d="M15 17h5l-1-1V11a7 7 0 0 0-14 0v5l-1 1h5m0 0a3 3 0 0 0 6 0"></path>
+                        </svg>
+                        <div class="icon-label">Notification</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-drawer" id="menuDrawer">
+            <h2>Menu</h2>
+            <p>Home</p>
+            <p>About</p> 
+        </div>
+        <script>
+            function toggleMenu() {
+                var drawer = document.getElementById("menuDrawer");
+                drawer.classList.toggle("open");
+            }
+        </script>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="icon-container" onclick="location.href='profile.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                    <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"></path>
+                </svg>
+                <div class="icon-label">Profile</div>
+            </div>
+            <div class="icon-container" onclick="location.href='orderlist.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                    <path d="M8 6h8M8 12h8M8 18h8M4 4h16v16H4z"></path>
+                </svg>
+                <div class="icon-label">Order</div>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                    <path d="M8 2v20M16 2l-2 5 2 5-2 5 2 5M5 2v10c0 2 1 3 3 3s3-1 3-3V2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+               <div class="icon-label">Food</div>
+            </div>
     </div>
-  </body>
+    
+</body>
 </html>

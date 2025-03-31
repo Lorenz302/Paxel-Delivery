@@ -3,174 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAXEL</title>
+    <title>Food</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
-        .header {
-            background-color: #d9534f;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            z-index: 1000;
-        }
-        .profile-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .profile-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .profile-name {
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .icon-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .icon-container div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-        .icon {
-            font-size: 25px;
-            cursor: pointer;
-            transition: all ease-in-out 0.1s;
-        }
-        .icon:hover {
-            transform: translateY(-3px);
-        }
-        .icon-label {
-            margin-top: 5px;
-            font-size: 12px;
-            color: white;
-        }
-        .order-section {
-            margin-top: 80px;
-            padding: 20px;
-            text-align: center;
-        }
-      .shop-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 80px 20px;
-        }
-        .shop-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        .shop-card img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .shop-card h3 {
-            margin: 10px 0;
-        }
-        .shop-card p {
-            font-size: 14px;
-            color: #666;
-        }
-        .shop-card .location {
-            font-weight: bold;
-            color: #333;
-        }
-        .shop-card button {
-            background: #d9534f;
-            color: white;
-            border: none;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .shop-card button:hover {
-            background: #c9302c;
-        }
-        .search-bar {
-            margin-left: 10px;
-        }
-        .search-bar input {
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F7F7F7;
+}
+
+.header {
+    background-color: #A8180D;
+    color: #F7F7F7;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: margin-right 0.3s ease;
+}
+
+.icon-container div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.icon-container div:hover {
+    transform: translateY(-3px);
+}
+
+.icon {
+    font-size: 24px;
+}
+
+.icon-label {
+    font-size: 14px;
+    color: #F7F7F7;
+}
+
+.footer {
+    background-color: #A8180D;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+}
+
+.footer .icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.footer .icon-container:hover {
+    transform: translateY(-5px);
+}
+
+.footer .icon {
+    font-size: 24px;
+    color: white;
+}
+
+.footer .icon-label {
+    font-size: 14px;
+    color: white;
+}
+
+.header-title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    position: relative;
+}
+
+.search-bar {
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+.search-bar.active {
+    width: 150px;
+    opacity: 1;
+}
+
+.search-bar input {
+    border: none;
+    padding: 0px;
+    width: 120px;
+    outline: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.search-bar.active input {
+    opacity: 1;
+}
+
+.menu-drawer {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #A8180D;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.2s ease-in-out, visibility 0s linear 0.2s;
+    padding: 20px;
+    visibility: hidden;
+}
+
+.menu-drawer.open {
+    left: 0;
+    visibility: visible;
+    transition: left 0.2s ease-in-out, visibility 0s linear 0s;
+}
+
+.order-section {
+    margin-top: 80px;
+    padding: 20px;
+    text-align: center;
+}
+
+.shop-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 100px 15px 80px;
+}
+
+.shop-card {
+    background: #F7F7F7;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.shop-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.shop-card h3 {
+    margin: 10px 0;
+}
+
+.shop-card p {
+    font-size: 14px;
+    color: black;
+}
+
+.shop-card .location {
+    font-weight: bold;
+    color: #333;
+}
+
+.shop-card button {
+    background: #A8180D;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.shop-card button:hover {
+    background: #C79900;
+}
+
+@media (max-width: 600px) {
+    /* Header */
+    .header-title-container {
+        display: flex;
+        align-items: center;
+        gap: 5px; 
+    }
+
+    .header-title-container h1 {
+        font-size: 20px; 
+    }
+
+    .icon-container {
+        gap: 15px; 
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        display: flex;
+        align-items: center;
+    }
+
+    .icon {
+        font-size: 30px; 
+        display: block;
+    }
+
+    .icon-label {
+        font-size: 12px;
+        display: block;
+        text-align: center;
+        margin-top: 2px; 
+    }
+
+   
+    .icon-container div {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .search-bar.active + .icon-container {
+        display: none !important;
+    }
+
+    .footer .icon-container {
+        gap: 10px; 
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .footer .icon {
+        font-size: 30px; 
+    }
+
+    .footer .icon-label {
+        font-size: 12px; 
+        text-align: center;
+        margin-top: 2px; 
+    }
+}
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="icon-container">
-        <div>
+        <div class="header-title-container">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                    <path d="M3 6h18M3 12h18M3 18h18"></path>
+                </svg>
+            </div>
+            <div class="search-icon" onclick="toggleSearchBar()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
             </div>
-            <div class="search-bar">
+            <h1>Paxel</h1>
+            
+            <div class="search-bar" id="searchBar">
                 <input type="text" placeholder="Search...">
-            </div>
-            <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
-                    <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"></path>
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
-                <div conclick="location.href='delivery.html'" class="icon-container">Profile</div>
             </div>
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
-                    <circle r="1" cy="21" cx="9"></circle>
-                    <circle r="1" cy="21" cx="20"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                <div conclick="location.href='delivery.html'" class="icon-container">Cart</div>
-            </div>
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
-                    <path d="M8 6h8M8 12h8M8 18h8M4 4h16v16H4z"></path>
-                </svg>
-                <div onclick="location.href='orderlist.html'" class="icon-container">Order List</div>
-
-            </div>
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
-                    <path d="M3 9v10h18V9H3zm13 10a2 2 0 1 1 4 0M4 19a2 2 0 1 1 4 0M13 9V5h4l3 4v4"></path>
-                </svg>
-                <div conclick="location.href='delivery.html'" class="icon-container">Delivery</div>
-            </div>
-            <div onclick="location.href='grocery.html'">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
-                    <path d="M5 11l4-7m10 7l-4-7M2 11h20l-2 10H4z"></path>
-                </svg>
-                <span>Grocery</span>
+            <div class="icon-container">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                        <circle r="1" cy="21" cx="9"></circle>
+                        <circle r="1" cy="21" cx="20"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <div class="icon-label">Cart</div>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                        <path d="M3 9v10h18V9H3zm13 10a2 2 0 1 1 4 0M4 19a2 2 0 1 1 4 0M13 9V5h4l3 4v4"></path>
+                    </svg>
+                    <div class="icon-label">Delivery</div>
+                </div>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                        <path d="M15 17h5l-1-1V11a7 7 0 0 0-14 0v5l-1 1h5m0 0a3 3 0 0 0 6 0"></path>
+                    </svg>
+                    <div class="icon-label">Notification</div>
+                </div>
             </div>
         </div>
-        <div class="profile-container">
-            <img src="profile.jpg" alt="User Profile" class="profile-img">
-            <div class="profile-name">Username</div>
+    </div>
+    <div class="menu-drawer" id="menuDrawer">
+        <h1>Paxel</h1>
+        <p>Home</p>
+        <p>About</p> 
+    </div>
+    <script>
+        function toggleMenu() {
+            var drawer = document.getElementById("menuDrawer");
+            drawer.classList.toggle("open");
+        }
+    </script>
         </div>
     </div>
     <div class="shop-container">
@@ -200,7 +368,49 @@
         <button type="button" onclick="event.stopPropagation(); return false;">Order Now</button>
         <button type="button" onclick="event.stopPropagation(); return false;">Add to Cart</button>
     </div>
+    <div class="footer">
+        <div class="icon-container" onclick="location.href='profile.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"></path>
+            </svg>
+            <div class="icon-label">Profile</div>
+        </div>
+        <div class="icon-container" onclick="location.href='orderlist.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                <path d="M8 6h8M8 12h8M8 18h8M4 4h16v16H4z"></path>
+            </svg>
+            <div class="icon-label">Order</div>
+        </div>
+        <div class="icon-container" onclick="location.href='grocery.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                <path d="M5 11l4-7m10 7l-4-7M2 11h20l-2 10H4z"></path>
+            </svg>
+            <div class="icon-label">Grocery</div>
+        </div>
 </div>
+<script>
+   function toggleSearchBar() {
+    var searchBar = document.getElementById("searchBar");
+    var iconContainer = document.querySelector(".icon-container");
 
+    if (searchBar.classList.contains("active")) {
+        searchBar.classList.remove("active");
+        iconContainer.style.marginRight = "0px"; 
+    } else {
+        searchBar.classList.add("active");
+        iconContainer.style.marginRight = "170px"; 
+    }
+}
+
+
+document.addEventListener("click", function(event) {
+    var searchBar = document.getElementById("searchBar");
+    var searchIcon = document.querySelector(".search-icon");
+
+    if (event.target === searchIcon) {
+        toggleSearchBar(); 
+    }
+});
+</script>
 </body>
 </html>
